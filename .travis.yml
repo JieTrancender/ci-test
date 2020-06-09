@@ -12,17 +12,17 @@ script:
 install:
   - go get -v
 
-  before_deploy: make build-all
-  deploy:
-    provider: releases
-    api_key:
-      secure: f7c5581d37b4a267a1fba94e811499119385e97b
-    file_glob: true
-    file: bin/*
-    skip_cleanup: true
-    on:
-      repo: JieTrancender/ci-test
-      tags: true
+before_deploy: make build-all
+deploy:
+  provider: releases
+  api_key:
+    secure: "f7c5581d37b4a267a1fba94e811499119385e97b"
+  file_glob: true
+  file: bin/*
+  skip_cleanup: true
+  on:
+    repo: JieTrancender/ci-test
+    tags: true
 
 after_success:
   - bash <(curl -s https://codecov.io/bash) -t 899ed649-8a86-4d09-bc4c-1d2dda59c2b2
