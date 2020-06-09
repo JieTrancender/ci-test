@@ -6,7 +6,8 @@ go:
 env:
   - GO111MODULE=on
 
-script: go test -v
+script:
+  - go test -race -coverprofile=coverage.txt -covermode=atomic
 
 install:
   - go get -v
@@ -22,3 +23,6 @@ install:
     on:
       repo: JieTrancender/ci-test
       tags: true
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash) -t 899ed649-8a86-4d09-bc4c-1d2dda59c2b2
